@@ -28,8 +28,13 @@ int numberOfOccurances(struct Trie *pTrie, char *word, int index) {
   if (index == strlen(word)) {
     occ += pTrie->isWord;
   }
+  int nextIndex;
+  if (word[index] == '\0') {
+    nextIndex = 0;
+  } else {
+    nextIndex = word[index] - 'a';
+  }
 
-  int nextIndex = word[index] - 'a';
   if (pTrie->next[nextIndex] != NULL) {
     occ += numberOfOccurances(pTrie->next[nextIndex], word, index + 1);
   }
